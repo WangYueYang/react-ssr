@@ -1,0 +1,29 @@
+{
+  "name": "react-ssr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/WangYueYang/react-ssr.git",
+  "author": "wangyueyang <1632085751@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:client": "webpack --config build/webpack.client.js",
+    "server": "node src/server/app.ts"
+  },
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "@types/koa": "^2.13.4",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "koa": "^2.13.4",
+    "koa-static": "^5.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
