@@ -13,4 +13,18 @@ babel-loader @babel/core @babel/preset-react
 # 配置静态资源服务器
 koa-static @koa/router
 
+# 打包 server
+Webpack-node-externals
+nodemon 监听node
+npm-run-all
+
+# React 组件直出
+ReactDOMServer.renderToString
+
+# SSR 路由
+StaticRouter
+
+# 注入数据
+redux
+
 nrm 切换 npm 代理源
