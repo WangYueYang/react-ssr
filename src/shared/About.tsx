@@ -1,21 +1,30 @@
 import axios from 'axios';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { Dispatch } from 'redux';
 
 type IProps = {
-  data: string
-}
+  data: string;
+  dispatch: Dispatch;
+};
 
 function About(props) {
+  const [data, setData] = useState('');
 
-  const [data, setData] = useState('')
+  useEffect(() => {
+    if (!props.data) {
+      axios.get('http://localhost:3000/getData').then((res) => {
+        props.dispatch({
+          type: 'CHANGE_STATE',
+          payload: {
+            data: res.data.data,
+          },
+        });
+      });
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/getData').then(res=> {
-  //     setData(res.data.data)
-  //   })
-  // }, [])
-  
+
   return (
     <>
       <main>
@@ -29,22 +38,27 @@ function About(props) {
 
 About.loadData = (store) => {
   return new Promise((resolve) => {
-    axios.get('http://localhost:3000/getData').then(res=> {
+    axios.get('http://localhost:3000/getData').then((res) => {
       store.dispatch({
         type: 'CHANGE_STATE',
         payload: {
-          data: res.data.data
-        }
-      })
-      resolve(res.data.data);  
-    }) 
-  })
-}
+          data: res.data.data,
+        },
+      });
+      resolve(res.data.data);
+    });
+  });
+};
 
 function mapStateToProps(state) {
   return {
-    data: state.data
-  }
+    data: state.data,
+  };
 }
 
-export default connect(mapStateToProps)(About);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(About);

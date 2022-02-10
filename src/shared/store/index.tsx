@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 
 const initState = {
-  data: 'hahaha'
+  data: ''
 }
 
 function reducer(state = initState, action) {
