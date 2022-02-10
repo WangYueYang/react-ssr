@@ -2,8 +2,6 @@ import Koa from 'koa';
 import Route from '@koa/router';
 import serve from 'koa-static';
 
-// const fs = require('fs');
-// const path = require('path');
 import fs from 'fs';
 import path from 'path'
 
@@ -54,22 +52,6 @@ router.get(['/', '/about'], async (ctx) => {
       store: `<script>window.REDUX_STORE = ${JSON.stringify(store.getState())}</script>`,
     });
 
-    // ctx.body = `
-    //   <!DOCTYPE html>
-    //   <html lang="en">
-    //   <head>
-    //     <meta charset="UTF-8">
-    //     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    //     <title>React-ssr</title>
-    //   </head>
-    //   <body>
-
-    //     <div id="app">${html}</div>
-    //     <script src="bundle.js"></script>
-    //   </body>
-    //   </html>
-    // `;
   });
 });
 
