@@ -27,4 +27,7 @@ StaticRouter
 # 注入数据
 redux @babel/preset-typescript
 
+# 优化
+webpack动态打包 通过 html-webpack-plugin 动态生成，通过 fs 读取文件
+
 nrm 切换 npm 代理源
