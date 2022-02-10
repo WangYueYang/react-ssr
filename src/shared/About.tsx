@@ -1,7 +1,12 @@
 import axios from 'axios';
+import {connect} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 
-function About() {
+type IProps = {
+  data: string
+}
+
+function About(props) {
 
   const [data, setData] = useState('')
 
@@ -15,20 +20,31 @@ function About() {
     <>
       <main>
         <h2>Who are we?</h2>
-        <p>That feels like an existential question, don't you think?</p>
       </main>
       <nav>About</nav>
-      <div>{data}</div>
+      <div>{props.data}</div>
     </>
   );
 }
 
-About.loadData = () => {
+About.loadData = (store) => {
   return new Promise((resolve) => {
     axios.get('http://localhost:3000/getData').then(res=> {
+      store.dispatch({
+        type: 'CHANGE_STATE',
+        payload: {
+          data: res.data.data
+        }
+      })
       resolve(res.data.data);  
     }) 
   })
 }
 
-export default About;
+function mapStateToProps(state) {
+  return {
+    data: state.data
+  }
+}
+
+export default connect(mapStateToProps)(About);

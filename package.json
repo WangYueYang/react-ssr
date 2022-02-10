@@ -12,6 +12,7 @@
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@koa/router": "^10.1.1",
     "@types/koa": "^2.13.4",
     "@types/react": "^17.0.38",

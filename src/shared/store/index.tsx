@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 
 const initState = {
-  data: ''
+  data: 'hahaha'
 }
 
 function reducer(state = initState, action) {
@@ -18,9 +18,9 @@ function reducer(state = initState, action) {
 }
 
 export function createClientStore() {
-  createStore(reducer)
+  return createStore(reducer, (window as any).REDUX_STORE)
 }
 
 export function createServerStore() {
-  createStore(reducer)
+  return createStore(reducer)
 }

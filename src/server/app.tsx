@@ -6,16 +6,19 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { RouteList } from '../shared/Routes';
-
+import { Provider } from 'react-redux';
+import { createServerStore } from '../shared/store';
 import App from '../shared/App';
 
 const app = new Koa();
 const router = new Route();
 
 router.get(['/', '/about'], async (ctx) => {
+  const store = createServerStore();
+
   const promises = RouteList.map((routes) => {
     if (routes.path === ctx.req.url && routes.element.type.loadData) {
-      return routes.element.type.loadData();
+      return routes.element.type.loadData(store);
     }
   }).filter(Boolean);
 
@@ -23,9 +26,11 @@ router.get(['/', '/about'], async (ctx) => {
     console.log(data, 'data');
 
     const html = renderToString(
-      <StaticRouter location={ctx.req.url}>
-        <App />
-      </StaticRouter>
+      <Provider store={store}>
+        <StaticRouter location={ctx.req.url}>
+          <App />
+        </StaticRouter>
+      </Provider>
     );
 
     ctx.body = `
@@ -38,6 +43,9 @@ router.get(['/', '/about'], async (ctx) => {
         <title>React-ssr</title>
       </head>
       <body>
+        <script>
+          window.REDUX_STORE = ${JSON.stringify(store.getState())}
+        </script>
         <div id="app">${html}</div>
         <script src="bundle.js"></script>
       </body>

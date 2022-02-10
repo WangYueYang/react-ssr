@@ -25,6 +25,6 @@ ReactDOMServer.renderToString
 StaticRouter
 
 # 注入数据
-redux
+redux @babel/preset-typescript
 
 nrm 切换 npm 代理源
