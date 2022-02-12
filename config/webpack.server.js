@@ -7,12 +7,12 @@ module.exports = {
     filename: 'app.js',
     path: path.join(__dirname, '../dist')
   },
-  externals: [nodeExternals()],
   target: 'node',
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
-        test: /ts(x)?/,
+        test: /\.ts(x)?/,
         use: 'babel-loader',
       }
     ]

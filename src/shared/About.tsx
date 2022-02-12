@@ -28,7 +28,7 @@ const About = (props) => {
 
 About.getData = (store) => {
   return new Promise((resolve, reject) => {
-    axios.get('/getData').then((res) => {
+    axios.get('http://localhost:3000/getData').then((res) => {
       store.dispatch({
         type: 'CHANGE_STATE',
         payload: {
