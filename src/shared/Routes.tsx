@@ -1,25 +1,21 @@
 import React from 'react';
+import About from './About';
+import Home from './Home';
 import { useRoutes } from 'react-router-dom';
 
-import Home from './Home';
-import About from './About';
-
-export const RouteList = [
+export const routeList = [
   {
     path: '/',
-    index: true,
     element: <Home />,
   },
   {
     path: '/about',
     element: <About />,
-    // loadData: About.loadData
   },
-]
+];
 
-const RoutesList = () => {
-  const ele = useRoutes(RouteList);
-  return ele
+const RouteFC = () => {
+  return useRoutes(routeList);
 };
 
-export default RoutesList;
+export default RouteFC;

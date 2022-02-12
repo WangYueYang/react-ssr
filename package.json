@@ -8,8 +8,12 @@
   "scripts": {
     "build:client": "webpack --config build/webpack.client.js",
     "build:server": "webpack --config build/webpack.server.js",
+    "build:all": "npm-run-all --parallel build:*",
     "start": "cd dist && nodemon app.js",
-    "build": "npm-run-all --parallel build:*"
+    "client": "webpack --config config/webpack.client.js",
+    "server": "webpack --config config/webpack.server.js",
+    "build": "npm-run-all client server",
+    "dev": "nodemon src/server/app.js"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.16.7",
